@@ -57,6 +57,12 @@ const divCardStyle = {
     float: "right"
  };
 
+ const navEditStyle = {
+    float: "right",
+    background: "none"
+
+ }
+
 
 
     return (
@@ -83,7 +89,7 @@ const divCardStyle = {
                     
                    
                     {user ? (
-                        <div className="card-footer">
+                        <div className="card-footer" style={navEditStyle}>
                             <Link to={{
                                 pathname: "/trades/edit",
                                 state: {
