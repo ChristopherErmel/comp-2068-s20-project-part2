@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Axios from 'axios';
 import { Form, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Login = ({setUser}) => {
   const [inputs, setInputs] = useState({
@@ -21,19 +21,19 @@ const Login = ({setUser}) => {
 
       if (resp.status === 200) {
         setUser(resp.data.user);
-        // toast('You have logged in successfully', {
-        //   type: toast.TYPE.SUCCESS
-        // });
+        toast('You have logged in successfully', {
+          type: toast.TYPE.SUCCESS
+        });
         setRedirect(true);
       } else {
-        // toast("There was an issue logging you in. Please check your credentials.", {
-        //   type: toast.TYPE.ERROR
-        // });
+        toast("There was an issue logging you in. Please check your credentials.", {
+          type: toast.TYPE.ERROR
+        });
       }
     } catch (error) {
-    //   toast("There was an issue logging you in. Please check your credentials.", {
-    //     type: toast.TYPE.ERROR
-    //   });
+      toast("There was an issue logging you in. Please check your credentials.", {
+        type: toast.TYPE.ERROR
+      });
     }
   };
 

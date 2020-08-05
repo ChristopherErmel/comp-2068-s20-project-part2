@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Form, Container} from 'react-bootstrap';
 import Axios from 'axios';
 import {Redirect} from 'react-router-dom';
-// import {toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 const New = function () {
     const [inputs, setInputs] = useState({
@@ -22,19 +22,19 @@ const New = function () {
         try {
             const resp = await Axios.post('/api/trades', inputs);
             if(resp.status === 200){
-                // toast('The blog was created successfully!', {
-                //     type: toast.TYPE.SUCCESS
-                // });
+                toast('The trade was created successfully!', {
+                    type: toast.TYPE.SUCCESS
+                });
                 setRedirect(true);
             }else {
-                // toast('There was an error creating the blog.', {
-                //     type: toast.TYPE.ERROR
-                // });
+                toast('There was an error creating the trade.', {
+                    type: toast.TYPE.ERROR
+                });
             }
         }catch (error){
-            // toast('There was an error creating the blog.', {
-            //     type: toast.TYPE.ERROR
-            // });
+            toast('There was an error creating the trade.', {
+                type: toast.TYPE.ERROR
+            });
         }
     };
 
