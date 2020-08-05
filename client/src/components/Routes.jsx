@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 //imports the components we want to use for routes
 import Home from './pages/Home';
 import Login from './sessions/Login';
-// import Logout from './sessions/Logout';
+import Logout from './sessions/Logout';
 
 import Trades from './trades/Index';
 import NewTrade from './trades/New';
@@ -16,9 +16,14 @@ function Routes({user, setUser}){
     return(
         <Switch>
             <Route exact path="/" component={Home}/>
-            {/* <Route exact path="/trades" component={Trades}/> */}
             <Route exact path="/login" render={
                 renderProps => <Login
+                {...renderProps}
+                setUser={setUser}
+                />
+            }/>
+            <Route exact path="/logout" render={
+                renderProps => <Logout
                 {...renderProps}
                 setUser={setUser}
                 />
