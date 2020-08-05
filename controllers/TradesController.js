@@ -62,14 +62,9 @@ exports.show = async (req, res) => {
 
     const user = await User.findById(req.user);
 
-    res.render(`${viewPath}/show`, {
-      pageTitle: trade.title,
-      trade: trade,
-      user: user
-    });
+    res.status(200).json(trade);
   } catch (error) {
-    req.flash('danger', `There was an error displaying this trade: ${error}`);
-    res.redirect('/');
+    res.status(400).json({message: "There was an error grabbing the trade"})
   }
 };
 
@@ -122,11 +117,9 @@ exports.update = async (req, res) => {
     await Trade.findByIdAndUpdate(req.body.id, req.body);
     //await Trade.updateOne({_id: req.body.id}, req.body);
 
-    req.flash('success', 'Trade was successfully updated!');
-    res.redirect(`/trades/${req.body.id}`);
+    res.status(200).json(trade)
 
   } catch (error) {
-    req.flash('danger', `There was an error updating this trade: ${error}`);
     res.redirect(`/trades/${req.body.id}/edit`);
   }
 }
@@ -134,11 +127,9 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
   try {
     await Trade.deleteOne({_id: req.body.id});
-    req.flash('success', 'This Trade was deleted!');
-    res.redirect('/trades');
+   res.status(200).json({message: ""})
   } catch (error) {
-    req.flash('danger', `There was an error deleting this trade: ${error}`);
-    res.redirect('/trades');
+    res.status(400).json({message: "There was an error deleting the trade."})
   }
 }
 

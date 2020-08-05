@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Container, Fragment} from 'react-bootstrap';
 import Axios from 'axios';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import {Link} from 'react-router-dom';
 
 
@@ -22,20 +22,20 @@ const Index = function ({user}) {
         if (tradesResp.status === 200) setTrades(tradesResp.data);
     };
 
-    // const deleteTrade = async trade => {
-    //     try {
-    //         //gets the trade id
-    //         const resp = await Axios.post('/api/trades/delete', {
-    //             id: trade._id
-    //         });
-    //         // if(resp.status === 200) toast("The trade was deleted successfully!", {type: toast.TYPE.SUCCESS});
-    //         await getTrades();
-    //     }catch (error){
-    //         // toast('There was an error deleting the trade.', {
-    //         //     type: toast.TYPE.ERROR
-    //         // });
-    //     }
-    // };
+    const deleteTrade = async trade => {
+        try {
+            //gets the trade id
+            const resp = await Axios.post('/api/trades/delete', {
+                id: trade._id
+            });
+            if(resp.status === 200) toast("The trade was deleted successfully!", {type: toast.TYPE.SUCCESS});
+            await getTrades();
+        }catch (error){
+            toast('There was an error deleting the trade.', {
+                type: toast.TYPE.ERROR
+            });
+        }
+    };
 
 // styling
 const divCardStyle = {
@@ -82,12 +82,12 @@ const divCardStyle = {
                                     <Link className="btn btn-primary" to={{pathname: `/trades/{trade.id}`}} href="/trades/<%= trade.id %>">View</Link>
                     
                    
-                    {/* {user ? (
+                    {user ? (
                         <div className="card-footer">
                             <Link to={{
                                 pathname: "/trades/edit",
                                 state: {
-                                    id: blog._id
+                                    id: trade._id
                                 }
                             }}>
                                 <i className="fa fa-edit"></i>
@@ -98,7 +98,7 @@ const divCardStyle = {
                             </button>
 
                         </div>
-                    ) : null} */}
+                    ) : null}
                     </div>
                     </div>
                 ))}
