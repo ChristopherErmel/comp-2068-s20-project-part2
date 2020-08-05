@@ -4,8 +4,8 @@
  //to check for loged in status
  function auth (req, res, next) {    
      if(!req.isAuthenticated()){
-         req.flash('danger', 'You need to login.');
-         return res.redirect('/login');
+        
+        return res.status(401).json({message: "You must authenticate before using this API call"})
      }
      next();
  }

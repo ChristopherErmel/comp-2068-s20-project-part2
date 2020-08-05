@@ -45,14 +45,14 @@ const playerData = fs.createReadStream('./assets/players/players.csv')
 exports.index = async (req, res) => {
   try {
     const trades = await Trade.find().populate('user').sort({updatedAt: 'desc'});
-    res.render(`${viewPath}/index`, {
-      pageTitle: 'Active Trades',
-      trades: trades
-      // myTrades: false
-    });
+    // res.render(`${viewPath}/index`, {
+    //   pageTitle: 'Active Trades',
+    //   trades: trades
+    //   // myTrades: false
+    // });
+    res.status(200).json(trades);
   } catch (error) {
-    req.flash('danger', `There was an error displaying the trades: ${error}`);
-    res.redirect('/');
+    res.status(400).json({message: "There was an error getting the trades", error})
   }
 };
 
@@ -87,11 +87,12 @@ exports.create = async (req, res) => {
     const {user : email} = req.session.passport;
     const user = await User.findOne({email : email});
     const trade = await Trade.create({user: user._id, ...req.body});
-    req.flash('success', 'Trade Posted Successfully!');
-    res.redirect(`/trades/${trade.id}`);
+    // req.flash('success', 'Trade Posted Successfully!');
+    // res.redirect(`/trades/${trade.id}`);
+    res.status(200).json(trade)
+
   } catch (error) {
-    req.flash('danger', `There was an error creating this trade: ${error}`);
-    res.redirect('/trades/new');
+    res.status(400).json("There was an error creating this trade!");
   };
 };
 

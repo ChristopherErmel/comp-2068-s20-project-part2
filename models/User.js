@@ -22,6 +22,11 @@ const UserSchema = new mongoose.Schema({
       message: props => `${props.value} doesn't match the email confirmation`
     }
   }
+},{
+  timestamps: true,
+    toJSON: {
+      getters: true
+  }
 });
 
 // Virtuals

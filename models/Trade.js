@@ -58,7 +58,10 @@ const TradeSchema = new mongoose.Schema({
     default: 'Comments:'
   },
 }, {
-  timestamps: true
+  timestamps: true,
+  toJSON: {
+    getters: true
+  }
 });
 
 TradeSchema.query.tradingFor = function () {

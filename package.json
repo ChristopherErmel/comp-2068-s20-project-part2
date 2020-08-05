@@ -1,12 +1,13 @@
 {
-  "name": "Instructor-Copy",
+  "name": "Project-Part-2",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "heroku-postbuild": "cd client && npm install && npm install --onldev --no-shrinkwrap && npm run build"
   },
   "keywords": [],
   "author": "",

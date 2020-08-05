@@ -1,0 +1,50 @@
+html,
+body, div#root{
+  height: 100%!important;
+  width: 100%!important;
+  margin: 0;
+}
+
+header:not(.home-cta), .alert {
+  margin-top: 80px;
+}
+
+.frontPage {
+  background: url('background.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  left: -.01vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x:hidden!important;
+  overflow-y:hidden!important;
+  position: fixed;
+}
+
+#frontPageText{
+  font-size: 10vh;
+  position: fixed;
+  bottom: 10vh;
+}
+
+.home-cta::-webkit-scrollbar {
+  display: none;
+}
+
+.home-cta::after {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+.home-cta > h1 {
+  color: #fff;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  font-size: 10rem;
+  text-align: center;
+  z-index: 1;
+}

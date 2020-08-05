@@ -98,7 +98,14 @@ app.use('/', (req, res, next) => {
   Step 7: Register our route composer
 */
 const routes = require('./routes.js');
-app.use('/', routes);
+app.use('/api', routes);
+
+app.use(express.static(path.join(__dirname, '/client/build')));
+app.get('*', (req, res) =>{
+  res.sendFile(path.join(__dirname+'client/build/index.html'));
+});
+
+
 //use registers our middleware
 app.use('/css', express.static('assets/css'));
 app.use('/js', express.static('assets/js'));
@@ -107,10 +114,17 @@ app.use('/players', express.static('assets/players'));
 app.use('/playersImages', express.static('assets/players/images'));
 
 
+const clientRoot = path.join(__dirname, '/client/build');
+
+// app.use ((req, res, next) => {
+//   if(req.method === 'GET' && req.accepts('html') && !req.is('json') && !req.path.includes('.')){
+//     res.sendFile('index.html', {clientRoot});
+//   }else next();
+// })
 
 
 /*
   Step 8: Start the server
 */
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on port 3000`));
+const port = process.env.PORT || 4000;
+app.listen(port, () => console.log(`Listening on port ${port}`));
