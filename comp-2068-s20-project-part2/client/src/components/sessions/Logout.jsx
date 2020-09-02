@@ -25,7 +25,7 @@ const Logout = ({setUser}) => {
         toast("There was an error while attempting to log you out", {type: toast.TYPE.ERROR});
       }
     })();
-  }, []);
+  }, [setUser]);
 
   if (redirect) return (<Redirect to="/trades"/>);
   return null;

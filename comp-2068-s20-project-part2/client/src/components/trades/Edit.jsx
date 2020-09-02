@@ -24,7 +24,7 @@ const Edit = function (props) {
         const tradeResp = await Axios.get(`/api/trades/${id}`);
         if (tradeResp.status === 200) setInputs(tradeResp.data);
         })();
-    }, []);
+    }, [id]);
 
 
 
